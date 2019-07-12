@@ -54,7 +54,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'LittleFisher Blog',
+  // title: '博客',
   pwa: false,
   iconfontUrl: '',
 } as DefaultSettings;

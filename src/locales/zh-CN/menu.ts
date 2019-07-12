@@ -48,4 +48,5 @@ export default {
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
   'menu.index': '首页',
+  'menu.title': '博客',
 };

@@ -22,22 +22,22 @@ const operationTabList = [
       </span>
     ),
   },
-  {
-    key: 'applications',
-    tab: (
-      <span>
-        应用 <span style={{ fontSize: 14 }}>(8)</span>
-      </span>
-    ),
-  },
-  {
-    key: 'projects',
-    tab: (
-      <span>
-        项目 <span style={{ fontSize: 14 }}>(8)</span>
-      </span>
-    ),
-  },
+  // {
+  //   key: 'applications',
+  //   tab: (
+  //     <span>
+  //       应用 <span style={{ fontSize: 14 }}>(8)</span>
+  //     </span>
+  //   ),
+  // },
+  // {
+  //   key: 'projects',
+  //   tab: (
+  //     <span>
+  //       项目 <span style={{ fontSize: 14 }}>(8)</span>
+  //     </span>
+  //   ),
+  // },
 ];
 
 interface IndexProps extends RouteChildrenProps {
