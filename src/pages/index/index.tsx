@@ -11,33 +11,6 @@ import Applications from './components/Applications';
 import styles from './Center.less';
 import { AuthorModelState, CurrentAuthor, TagType } from '@/models/author';
 
-const operationTabList = [
-  {
-    key: 'articles',
-    tab: (
-      <span>
-        文章 <span style={{ fontSize: 14 }}>(8)</span>
-      </span>
-    ),
-  },
-  // {
-  //   key: 'applications',
-  //   tab: (
-  //     <span>
-  //       应用 <span style={{ fontSize: 14 }}>(8)</span>
-  //     </span>
-  //   ),
-  // },
-  // {
-  //   key: 'projects',
-  //   tab: (
-  //     <span>
-  //       项目 <span style={{ fontSize: 14 }}>(8)</span>
-  //     </span>
-  //   ),
-  // },
-];
-
 interface IndexProps extends RouteChildrenProps {
   dispatch: Dispatch<any>;
   currentAuthor: CurrentAuthor;
@@ -58,6 +31,7 @@ interface IndexState {
     author: AuthorModelState;
   }) => ({
     currentAuthor: author.currentAuthor,
+    // TODO: 根据loading计算出来
     currentAuthorLoading: false,
   }),
 )
@@ -164,7 +138,6 @@ class Index extends PureComponent<IndexProps, IndexState> {
             <Card
               className={styles.tabsCard}
               bordered={false}
-              tabList={operationTabList}
               activeTabKey={tabKey}
               onTabChange={this.onTabChange}
             >
