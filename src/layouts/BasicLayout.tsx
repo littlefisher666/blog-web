@@ -118,6 +118,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         },
         ...routers,
       ]}
+      headerRender={false}
       footerRender={footerRender}
       menuDataRender={menuDataRender}
       formatMessage={formatMessage}

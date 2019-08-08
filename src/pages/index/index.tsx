@@ -1,4 +1,4 @@
-import { Card, Col, Divider, Icon, Input, Row, Tag } from 'antd';
+import { Card, Col, Divider, Row, Tag } from 'antd';
 import React, { PureComponent } from 'react';
 
 import { Dispatch } from 'redux';
@@ -47,8 +47,6 @@ interface IndexProps extends RouteChildrenProps {
 interface IndexState {
   newTags: TagType[];
   tabKey: 'articles' | 'applications' | 'projects';
-  inputVisible: boolean;
-  inputValue: string;
 }
 
 @connect(
@@ -84,12 +82,8 @@ class Index extends PureComponent<IndexProps, IndexState> {
 
   state: IndexState = {
     newTags: [],
-    inputVisible: false,
-    inputValue: '',
     tabKey: 'articles',
   };
-
-  public input: Input | null | undefined = undefined;
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -110,32 +104,6 @@ class Index extends PureComponent<IndexProps, IndexState> {
     });
   };
 
-  showInput = () => {
-    this.setState({ inputVisible: true }, () => this.input && this.input.focus());
-  };
-
-  saveInputRef = (input: Input | null) => {
-    this.input = input;
-  };
-
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ inputValue: e.target.value });
-  };
-
-  handleInputConfirm = () => {
-    const { state } = this;
-    const { inputValue } = state;
-    let { newTags } = state;
-    if (inputValue && newTags.filter(tag => tag.name === inputValue).length === 0) {
-      newTags = [...newTags, { code: `new-${newTags.length}`, name: inputValue }];
-    }
-    this.setState({
-      newTags,
-      inputVisible: false,
-      inputValue: '',
-    });
-  };
-
   renderChildrenByTabKey = (tabKey: IndexState['tabKey']) => {
     if (tabKey === 'projects') {
       return <Projects />;
@@ -150,7 +118,7 @@ class Index extends PureComponent<IndexProps, IndexState> {
   };
 
   render() {
-    const { newTags, inputVisible, inputValue, tabKey } = this.state;
+    const { newTags, tabKey } = this.state;
     const { currentAuthor, currentAuthorLoading } = this.props;
     const dataLoading =
       currentAuthorLoading || !(currentAuthor && Object.keys(currentAuthor).length);
@@ -187,26 +155,6 @@ class Index extends PureComponent<IndexProps, IndexState> {
                     {currentAuthor.tags.concat(newTags).map(item => (
                       <Tag key={item.code}>{item.name}</Tag>
                     ))}
-                    {inputVisible && (
-                      <Input
-                        ref={ref => this.saveInputRef(ref)}
-                        type="text"
-                        size="small"
-                        style={{ width: 78 }}
-                        value={inputValue}
-                        onChange={this.handleInputChange}
-                        onBlur={this.handleInputConfirm}
-                        onPressEnter={this.handleInputConfirm}
-                      />
-                    )}
-                    {!inputVisible && (
-                      <Tag
-                        onClick={this.showInput}
-                        style={{ background: '#fff', borderStyle: 'dashed' }}
-                      >
-                        <Icon type="plus" />
-                      </Tag>
-                    )}
                   </div>
                 </div>
               ) : null}
