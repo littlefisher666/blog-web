@@ -76,7 +76,8 @@ function fakeList(count: number): ListItemDataType[] {
       like: Math.ceil(Math.random() * 100) + 100,
       message: Math.ceil(Math.random() * 10) + 10,
       content:
-        '段落示意：蚂蚁金服设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。蚂蚁金服设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。',
+        '#### 前言\n' +
+        '在开发的时候，可能会遇到各种各样的设计模式，只不过由于有一些示例的代码，总会想着去模仿，至于为什么要这么写，这样写的好处是什么，可能就特别的不清楚。今天为了总结一下遇到的设计模式，才发现，原来开发中有这么多的设计模式，只不过自己都没有发现而已。',
       members: [
         {
           avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ZiESqWwCXBRQoaPONSJe.png',
