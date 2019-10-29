@@ -10,20 +10,17 @@ export interface TagType {
   code?: string;
 }
 
-/** 坐标信息 */
-export interface GeographicType {
+/** 城市信息 */
+export interface CityInfo {
+  /** 城市名 */
+  name: string;
+  /** 城市编码 */
+  code?: string;
   /** 省份 */
   province: {
     /** 省份名 */
     name: string;
     /** 省份编码 */
-    code?: string;
-  };
-  /** 城市 */
-  city: {
-    /** 城市名 */
-    name: string;
-    /** 城市编码 */
     code?: string;
   };
 }
@@ -44,8 +41,8 @@ export interface CurrentAuthor {
   group: string;
   /** 标签 */
   tags: TagType[];
-  /** 坐标 */
-  geographic: GeographicType;
+  /** 城市 */
+  city: CityInfo;
   /** 详细地址 */
   address: string;
   /** 手机号 */
@@ -78,7 +75,7 @@ const AuthorModel: AuthorModelType = {
       const response = yield call(fetchCurrentAuthor);
       yield put({
         type: 'saveCurrentAuthor',
-        payload: response,
+        payload: response.data,
       });
     },
   },

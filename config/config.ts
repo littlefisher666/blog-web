@@ -129,7 +129,7 @@ export default {
         resourcePath: string;
       },
       _: string,
-      localName: string
+      localName: string,
     ) => {
       if (
         context.resourcePath.includes('node_modules') ||
@@ -157,13 +157,12 @@ export default {
     basePath: '/',
   },
   chainWebpack: webpackPlugin,
-  /*
+
   proxy: {
-    '/server/api/': {
-      target: 'https://preview.pro.ant.design/',
+    '/blog/api/': {
+      target: 'http://127.0.0.1:8081/',
       changeOrigin: true,
-      pathRewrite: { '^/server': '' },
+      //pathRewrite: { '^/api': '/blog/api' },
     },
   },
-  */
 } as IConfig;

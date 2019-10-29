@@ -119,8 +119,8 @@ class Index extends PureComponent<IndexProps, IndexState> {
                     </p>
                     <p>
                       <i className={styles.address} />
-                      {currentAuthor.geographic.province.name}
-                      {currentAuthor.geographic.city.name}
+                      {currentAuthor.city.province.name}
+                      {currentAuthor.city.name}
                     </p>
                   </div>
                   <Divider dashed />
