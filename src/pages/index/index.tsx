@@ -9,7 +9,8 @@ import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
 import styles from './Center.less';
-import { AuthorModelState, CurrentAuthor, TagType } from '@/models/author';
+import { AuthorModelState, CurrentAuthor } from '@/models/author';
+import { TagType } from '@/models/global';
 
 interface IndexProps extends RouteChildrenProps {
   dispatch: Dispatch<any>;
@@ -60,12 +61,17 @@ class Index extends PureComponent<IndexProps, IndexState> {
   };
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { dispatch, currentAuthor } = this.props;
     dispatch({
       type: 'author/fetchCurrentAuthor',
     });
     dispatch({
-      type: 'index/fetch',
+      type: 'post/queryPostList',
+      payload: {
+        authorId: 1,
+        pageNum: 1,
+        size: 20,
+      },
     });
   }
 

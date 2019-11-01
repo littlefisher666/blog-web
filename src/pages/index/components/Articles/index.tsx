@@ -2,17 +2,18 @@ import { Icon, List, Tag } from 'antd';
 import React, { Component } from 'react';
 
 import { connect } from 'dva';
-import ArticleListContent from '../ArticleListContent';
-import { ListItemDataType } from '../../data.d';
-import { ModalState } from '../../model';
 import styles from './index.less';
+import { PostInfo, PostInfoState } from '@/models/post';
+import { TagType } from '@/models/global';
+import ArticleListContent from '@/pages/index/components/ArticleListContent';
 
-@connect(({ index }: { index: ModalState }) => ({
-  list: index.list,
+@connect(({ post }: { post: PostInfoState }) => ({
+  postPage: post.postPage,
 }))
-class Articles extends Component<Partial<ModalState>> {
+class Articles extends Component<Partial<PostInfoState>> {
   render() {
-    const { list } = this.props;
+    const { postPage } = this.props;
+    const content = postPage == null ? [] : postPage.content;
     const IconText: React.FC<{
       type: string;
       text: React.ReactNode;
@@ -23,32 +24,30 @@ class Articles extends Component<Partial<ModalState>> {
       </span>
     );
     return (
-      <List<ListItemDataType>
+      <List<PostInfo>
         size="large"
         className={styles.articleList}
         rowKey="id"
         itemLayout="vertical"
-        dataSource={list}
+        dataSource={content}
         renderItem={item => (
           <List.Item
-            key={item.id}
+            key={item.postId}
             actions={[
-              <IconText key="star" type="star-o" text={item.star} />,
-              <IconText key="like" type="like-o" text={item.like} />,
-              <IconText key="message" type="message" text={item.message} />,
+              <IconText key="read" type="read-o" text={item.readTimes} />,
+              /*<IconText key="star" type="star-o" text={item.readTimes}/>,*/
+              <IconText key="like" type="like-o" text={item.likedTimes} />,
+              /*<IconText key="message" type="message" text={item.message}/>,*/
             ]}
           >
             <List.Item.Meta
-              title={
-                <a className={styles.listItemMetaTitle} href={item.href}>
-                  {item.title}
-                </a>
-              }
+              title={<a className={styles.listItemMetaTitle} /*href={item.href}*/>{item.title}</a>}
               description={
                 <span>
-                  <Tag>Ant Design</Tag>
-                  <Tag>设计语言</Tag>
-                  <Tag>蚂蚁金服</Tag>
+                  <List<TagType>
+                    dataSource={item.tagList}
+                    renderItem={tag => <Tag>{tag.name}</Tag>}
+                  ></List>
                 </span>
               }
             />

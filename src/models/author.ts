@@ -1,14 +1,7 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
 import { fetchCurrentAuthor } from '@/services/author';
-
-/** 标签 */
-export interface TagType {
-  /** 标签名 */
-  name: string;
-  /** 标签编码 */
-  code?: string;
-}
+import { TagType } from '@/models/global';
 
 /** 城市信息 */
 export interface CityInfo {
@@ -27,6 +20,8 @@ export interface CityInfo {
 
 /** 作者 */
 export interface CurrentAuthor {
+  /** 作者id */
+  authorId: number;
   /** 名称 */
   name: string;
   /** 头像 */

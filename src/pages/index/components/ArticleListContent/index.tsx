@@ -3,25 +3,38 @@ import React from 'react';
 import moment from 'moment';
 import styles from './index.less';
 import ReactMarkdown from 'react-markdown';
+import { TagType } from '@/models/global';
 
 export interface ApplicationsProps {
   data: {
-    content?: string;
-    updatedAt?: any;
-    avatar?: string;
-    owner?: string;
-    href?: string;
+    postId: number;
+    title: string;
+    authorId: number;
+    authorName: string;
+    tagList: TagType[];
+    readTimes: number;
+    likedTimes: number;
+    createTime: string;
+    previewContent: string;
   };
 }
 const ArticleListContent: React.FC<ApplicationsProps> = ({
-  data: { content, updatedAt, avatar, owner, href },
+  data: {
+    postId,
+    title,
+    previewContent,
+    authorId,
+    authorName,
+    tagList,
+    readTimes,
+    likedTimes,
+    createTime,
+  },
 }) => (
   <div className={styles.listContent}>
-    <ReactMarkdown source={content} />
+    <ReactMarkdown source={previewContent} />
     <div className={styles.extra}>
-      <Avatar src={avatar} size="small" />
-      <a href={href}>{owner}</a> 发布在 <a href={href}>{href}</a>
-      <em>{moment(updatedAt).format('YYYY-MM-DD HH:mm')}</em>
+      <em>{moment(createTime).format('YYYY-MM-DD HH:mm')}</em>
     </div>
   </div>
 );
