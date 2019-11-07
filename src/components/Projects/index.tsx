@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import moment from 'moment';
 import AvatarList from '../AvatarList';
-import { ListItemDataType } from '../../data.d';
-import { ModalState } from '../../model';
+import { ListItemDataType } from '../../pages/index/data';
+import { ModalState } from '../../pages/index/model';
 import styles from './index.less';
 
 @connect(({ index }: { index: ModalState }) => ({

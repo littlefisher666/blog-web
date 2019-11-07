@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import styles from './index.less';
 import { PostInfo, PostInfoState } from '@/models/post';
-import { TagType } from '@/models/global';
-import ArticleListContent from '@/pages/index/components/ArticleListContent';
+import ArticleListContent from '@/components/ArticleListContent';
+import { TagType } from '@/entity/tag';
 
 @connect(({ post }: { post: PostInfoState }) => ({
   postPage: post.postPage,

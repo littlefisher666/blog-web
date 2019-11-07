@@ -1,25 +1,51 @@
 @import '~antd/es/style/themes/default.less';
 
+.overlay {
+  position: inherit;
+  width: 100%;
+  height: 180px;
+  background-color: #000;
+  opacity: 0.7;
+}
+
+.intrudeLess {
+  margin-top: -60px;
+
+  .avatar {
+    text-align: center;
+
+    & > img {
+      position: relative;
+      width: 128px;
+      height: 128px;
+      margin-bottom: 20px;
+      border: 5px solid #fff;
+      border-radius: 300px;
+    }
+  }
+}
+
 .avatarHolder {
   margin-bottom: 24px;
   text-align: center;
 
-  & > img {
-    width: 104px;
-    height: 104px;
-    margin-bottom: 20px;
+  .name {
+    margin: 24px 0;
+    font-weight: 500;
+    font-size: 30px;
+    font-family: Roboto, serif;
+    line-height: 28px;
   }
 
-  .name {
-    margin-bottom: 4px;
-    color: @heading-color;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
+  .signature {
+    color: #999;
+    font-size: 14px;
   }
 }
 
 .detail {
+  padding: 10px 24px;
+
   p {
     position: relative;
     margin-bottom: 8px;
@@ -60,6 +86,8 @@
 }
 
 .tags {
+  padding: 0 24px;
+
   :global {
     .ant-tag {
       margin-bottom: 8px;

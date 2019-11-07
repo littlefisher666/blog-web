@@ -1,9 +1,8 @@
-import { Avatar } from 'antd';
 import React from 'react';
 import moment from 'moment';
 import styles from './index.less';
 import ReactMarkdown from 'react-markdown';
-import { TagType } from '@/models/global';
+import { TagType } from '@/entity/tag';
 
 export interface ApplicationsProps {
   data: {
@@ -20,14 +19,7 @@ export interface ApplicationsProps {
 }
 const ArticleListContent: React.FC<ApplicationsProps> = ({
   data: {
-    postId,
-    title,
     previewContent,
-    authorId,
-    authorName,
-    tagList,
-    readTimes,
-    likedTimes,
     createTime,
   },
 }) => (

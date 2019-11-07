@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'dva';
 import numeral from 'numeral';
-import { ModalState } from '../../model';
+import { ModalState } from '../../pages/index/model';
 import stylesApplications from './index.less';
 
 export function formatWan(val: number) {

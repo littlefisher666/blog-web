@@ -1,7 +1,7 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
 import { fetchCurrentAuthor } from '@/services/author';
-import { TagType } from '@/models/global';
+import { TagType } from '@/entity/tag';
 
 /** 城市信息 */
 export interface CityInfo {
@@ -21,27 +21,27 @@ export interface CityInfo {
 /** 作者 */
 export interface CurrentAuthor {
   /** 作者id */
-  authorId: number;
+  authorId?: number;
   /** 名称 */
-  name: string;
+  name?: string;
   /** 头像 */
-  avatar: string;
+  avatar?: string;
   /** 邮箱 */
-  email: string;
+  email?: string;
   /** 签名 */
-  signature: string;
+  signature?: string;
   /** 职位 */
-  job: string;
+  job?: string;
   /** 团队 */
-  group: string;
+  group?: string;
   /** 标签 */
-  tags: TagType[];
+  tags?: TagType[];
   /** 城市 */
-  city: CityInfo;
+  city?: CityInfo;
   /** 详细地址 */
-  address: string;
+  address?: string;
   /** 手机号 */
-  phone: string;
+  phone?: string;
 }
 
 export interface AuthorModelState {
@@ -66,12 +66,15 @@ const AuthorModel: AuthorModelType = {
     currentAuthor: {},
   },
   effects: {
-    *fetchCurrentAuthor(_, { call, put }) {
+    *fetchCurrentAuthor({ callback }, { call, put }) {
       const response = yield call(fetchCurrentAuthor);
       yield put({
         type: 'saveCurrentAuthor',
         payload: response.data,
       });
+      if (callback && typeof callback === 'function') {
+        callback(response.data);
+      }
     },
   },
   reducers: {

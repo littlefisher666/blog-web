@@ -1,7 +1,8 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
 import { queryPostList } from '@/services/post';
-import { Page, TagType } from '@/models/global';
+import { TagType } from '@/entity/tag';
+import { Page } from '@/entity/page';
 
 export interface PostInfo {
   /** 博文id */
