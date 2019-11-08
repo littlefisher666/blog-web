@@ -7,7 +7,7 @@ import webpackPlugin from './plugin.config';
 const { pwa, primaryColor } = defaultSettings; // preview.pro.ant.design only do not use in your production ;
 // preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
 
-const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION } = process.env;
+const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION, DEFAULT_AUTHOR_ID } = process.env;
 const isAntDesignProPreview = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site';
 const plugins: IPlugin[] = [
   [
@@ -32,11 +32,11 @@ const plugins: IPlugin[] = [
       },
       pwa: pwa
         ? {
-          workboxPluginMode: 'InjectManifest',
-          workboxOptions: {
-            importWorkboxFrom: 'local',
-          },
-        }
+            workboxPluginMode: 'InjectManifest',
+            workboxOptions: {
+              importWorkboxFrom: 'local',
+            },
+          }
         : false, // default close dll, because issue https://github.com/ant-design/ant-design-pro/issues/4665
       // dll features https://webpack.js.org/plugins/dll-plugin/
       // dll: {
@@ -86,21 +86,11 @@ export default {
     {
       path: '/',
       component: '../layouts/BlogLayout.tsx',
-      Routes: ['src/pages/Authorized'],
-      authority: ['admin', 'user'],
       routes: [
-        // {
-        //   name: 'index',
-        //   icon: 'smile',
-        //   path: '/',
-        //   component: './index',
-        // },
-        // {
-        //   path: '/',
-        //   name: 'welcome',
-        //   icon: 'smile',
-        //   component: './Welcome',
-        // },
+        {
+          path: '/',
+          component: '../components/PostList/index',
+        },
         {
           component: './404',
         },
@@ -117,6 +107,7 @@ export default {
   define: {
     ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION:
       ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION || '', // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
+    DEFAULT_AUTHOR_ID: DEFAULT_AUTHOR_ID || 1,
   },
   ignoreMomentLocale: true,
   lessLoaderOptions: {

@@ -29,14 +29,6 @@ class AuthorInfo extends Component<ConnectProps> {
             currentAuthor: res,
             currentAuthorLoading: false,
           });
-          dispatch({
-            type: 'post/queryPostList',
-            payload: {
-              authorId: res.authorId,
-              pageNum: 0,
-              size: 5,
-            },
-          });
         },
       });
     }
