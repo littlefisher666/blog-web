@@ -35,9 +35,9 @@ export interface CurrentAuthor {
   /** 团队 */
   group?: string;
   /** 标签 */
-  tags?: TagType[];
+  tags: TagType[];
   /** 城市 */
-  city?: CityInfo;
+  city: CityInfo;
   /** 详细地址 */
   address?: string;
   /** 手机号 */
@@ -66,15 +66,12 @@ const AuthorModel: AuthorModelType = {
     currentAuthor: {},
   },
   effects: {
-    *fetchCurrentAuthor({ callback }, { call, put }) {
+    *fetchCurrentAuthor(_, { call, put }) {
       const response = yield call(fetchCurrentAuthor);
       yield put({
         type: 'saveCurrentAuthor',
         payload: response.data,
       });
-      if (callback && typeof callback === 'function') {
-        callback(response.data);
-      }
     },
   },
   reducers: {
