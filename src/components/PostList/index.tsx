@@ -5,13 +5,14 @@ import { connect } from 'dva';
 import { ConnectProps } from '@/models/connect';
 import { List } from 'antd';
 import SimplePostInfo from '@/components/SimplePostInfo';
+import styles from './index.less';
 
 interface PostListProps extends ConnectProps {
-  page: Page<PostInfo>;
+  postPage: Page<PostInfo>;
 }
 
 @connect(({ post }: { post: PostInfoState }) => ({
-  page: post.postPage,
+  postPage: post.postPage,
 }))
 class PostList extends Component<PostListProps> {
   componentDidMount() {
@@ -21,18 +22,35 @@ class PostList extends Component<PostListProps> {
         type: 'post/queryPostList',
         payload: {
           authorId: DEFAULT_AUTHOR_ID,
-          pageNum: 0,
-          size: 5,
         },
       });
     }
   }
 
   render() {
-    const { page } = this.props;
+    const { postPage, dispatch } = this.props;
+    const pageChange = (page: number, pageSize?: number): void => {
+      if (dispatch) {
+        dispatch({
+          type: 'post/queryPostList',
+          payload: {
+            authorId: DEFAULT_AUTHOR_ID,
+            pageNum: page - 1,
+            size: pageSize,
+          },
+        });
+      }
+    };
     return (
       <List<PostInfo>
-        dataSource={page ? page.content : []}
+        className={styles.postList}
+        dataSource={postPage ? postPage.content : []}
+        pagination={{
+          onChange: pageChange,
+          pageSize: 5,
+          size: 'small',
+          total: postPage.totalElements,
+        }}
         renderItem={item => <SimplePostInfo post={item} />}
       />
     );

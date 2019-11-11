@@ -1,0 +1,41 @@
+@import '~antd/es/style/themes/default.less';
+
+.tag_a {
+  position: relative;
+  display: inline-block;
+  //float: left;
+  height: 18px;
+  margin: 5px 9px 5px 8px;
+  padding: 0 5px 0 10px;
+  color: #fff;
+  font-weight: normal;
+  font-size: 10px;
+  font-family: Menlo, Monaco, 'Andale Mono', 'lucida console', 'Courier New', monospace;
+  line-height: 18px;
+  text-decoration: none;
+  background: #ba8f6c;
+  border-radius: 0 5px 5px 0;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: -18px;
+    width: 0;
+    height: 0;
+    border: 9px solid transparent;
+    border-right-color: #ba8f6c;
+    content: ' ';
+  }
+
+  &::after {
+    position: absolute;
+    top: 7px;
+    left: 2px;
+    width: 4px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+    content: ' ';
+  }
+}

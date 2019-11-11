@@ -48,7 +48,12 @@ const PostModel: PostModel = {
   },
   effects: {
     *queryPostList({ payload }, { call, put }) {
-      const response = yield call(queryPostList, payload.authorId, payload.pageNum, payload.size);
+      const response = yield call(
+        queryPostList,
+        payload.authorId,
+        payload.pageNum || 0,
+        payload.size || 5,
+      );
       yield put({
         type: 'savePost',
         payload: response.data,
