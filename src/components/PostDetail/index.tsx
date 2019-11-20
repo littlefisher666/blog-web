@@ -7,36 +7,39 @@ import PostTitle from '@/components/PostTitle';
 import Markdown from '@/components/Markdown';
 
 interface PostDetailProps extends ConnectProps {
-  postDetail: Post;
+  post: Post;
 }
 
-type PropsWithRouter = PostDetailProps & RouteComponentProps;
+interface RouterInfo {
+  postId: string;
+}
+
+type PropsWithRouter = PostDetailProps & RouteComponentProps<RouterInfo>;
 
 @connect(({ post }: { post: PostInfoState }) => ({
-  postDetail: post.post,
+  post: post.post,
 }))
 class PostDetail extends Component<PropsWithRouter> {
   componentDidMount() {
     const { dispatch } = this.props;
-    const data = this.props.location.state;
+    const id = this.props.match.params.postId;
     if (dispatch) {
       dispatch({
         type: 'post/queryPostDetail',
         payload: {
-          postId: data.postId,
+          postId: id,
         },
       });
     }
   }
 
   render() {
-    const { postDetail } = this.props;
-    const data = this.props.location.state;
-    const loading = postDetail == null || data == null;
+    const { post } = this.props;
+    const loading = post == null;
     return loading ? (
       <div />
     ) : (
-      <PostTitle post={data} content={<Markdown source={postDetail.content} />} />
+      <PostTitle post={post} content={<Markdown source={post.content} />} />
     );
   }
 }

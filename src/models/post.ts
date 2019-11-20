@@ -25,7 +25,7 @@ export interface PostInfo {
   createTime: string;
 }
 
-export interface Post {
+export interface Post extends PostInfo {
   /** 博文id */
   postId: number;
   /** 博文 */

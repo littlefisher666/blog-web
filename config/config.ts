@@ -92,7 +92,7 @@ export default {
           component: '../components/PostList/index',
         },
         {
-          path: '/postDetail',
+          path: '/postDetail/:postId',
           component: '../components/PostDetail/index',
         },
         {
