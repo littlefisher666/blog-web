@@ -92,6 +92,10 @@ export default {
           component: '../components/PostList/index',
         },
         {
+          path: '/postDetail',
+          component: '../components/PostDetail/index',
+        },
+        {
           component: './404',
         },
       ],

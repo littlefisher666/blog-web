@@ -1,6 +1,6 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
-import { queryPostList } from '@/services/post';
+import { queryPostDetail, queryPostList } from '@/services/post';
 import { TagType } from '@/entity/tag';
 import { Page } from '@/entity/page';
 
@@ -25,8 +25,16 @@ export interface PostInfo {
   createTime: string;
 }
 
+export interface Post {
+  /** 博文id */
+  postId: number;
+  /** 博文 */
+  content: string;
+}
+
 export interface PostInfoState {
   postPage?: Partial<Page<PostInfo>>;
+  post?: Post;
 }
 
 export interface PostModel {
@@ -34,9 +42,11 @@ export interface PostModel {
   state: PostInfoState;
   effects: {
     queryPostList: Effect;
+    queryPostDetail: Effect;
   };
   reducers: {
     savePost: Reducer<PostInfoState>;
+    savePostDetail: Reducer<PostInfoState>;
   };
 }
 
@@ -59,12 +69,25 @@ const PostModel: PostModel = {
         payload: response.data,
       });
     },
+    *queryPostDetail({ payload }, { call, put }) {
+      const response = yield call(queryPostDetail, payload.postId);
+      yield put({
+        type: 'savePostDetail',
+        payload: response.data,
+      });
+    },
   },
   reducers: {
     savePost(state, action) {
       return {
         ...(state as PostInfoState),
         postPage: action.payload || {},
+      };
+    },
+    savePostDetail(state, action) {
+      return {
+        ...(state as PostInfoState),
+        post: action.payload || {},
       };
     },
   },

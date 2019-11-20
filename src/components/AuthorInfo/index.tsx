@@ -4,6 +4,7 @@ import { AuthorModelState, CurrentAuthor } from '@/models/author';
 import styles from '@/components/AuthorInfo/index.less';
 import { Card, Divider, Tag } from 'antd';
 import { ConnectProps } from '@/models/connect';
+import { Link } from 'umi';
 
 interface AuthorInfoProps extends ConnectProps {
   currentAuthor: CurrentAuthor;
@@ -13,7 +14,7 @@ interface AuthorInfoProps extends ConnectProps {
 @connect(({ author }: { author: AuthorModelState }) => ({
   currentAuthor: author.currentAuthor,
 }))
-class AuthorInfo extends Component<AuthorInfoProps> {
+class AuthorInfo extends Component<Partial<AuthorInfoProps>> {
   componentDidMount() {
     const { dispatch } = this.props;
     if (dispatch) {
@@ -34,7 +35,9 @@ class AuthorInfo extends Component<AuthorInfoProps> {
             <div className={styles.overlay} />
             <div className={styles.intrudeLess}>
               <div className={styles.avatar}>
-                <img alt="" src={currentAuthor.avatar} />
+                <Link to="/">
+                  <img className={styles.avatarImg} alt="" src={currentAuthor.avatar} />
+                </Link>
               </div>
               <div className={styles.avatarHolder}>
                 <div className={styles.name}>{currentAuthor.name}</div>

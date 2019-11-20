@@ -10,3 +10,7 @@ export async function queryPostList(authorId: number, pageNum: number, size: num
     method: 'get',
   });
 }
+
+export async function queryPostDetail(postId: number): Promise<any> {
+  return request(`/blog/api/v1/post/${postId}/content`);
+}

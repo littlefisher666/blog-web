@@ -43,7 +43,7 @@ class PostList extends Component<PostListProps> {
     };
     return (
       <List<PostInfo>
-        className={styles.postList}
+        className={styles.postListCard}
         dataSource={postPage ? postPage.content : []}
         pagination={{
           onChange: pageChange,
