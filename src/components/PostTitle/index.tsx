@@ -1,12 +1,12 @@
 import React, { PureComponent, ReactNode } from 'react';
 import { PostInfo } from '@/models/post';
 import { Card } from 'antd';
-import styles from './index.less';
 import Meta from 'antd/lib/card/Meta';
 import moment from 'moment';
-import Index from '@/components/IconText';
+import IconText from '@/components/IconText';
 import Tag from '@/components/Tag';
 import { Link } from 'umi';
+import styles from './index.less';
 
 interface PostTitleProps {
   post: PostInfo;
@@ -27,12 +27,12 @@ class PostTitle extends PureComponent<PostTitleProps> {
                   {post.title}
                 </Link>
                 <div className={styles.postTitleCreateTime}>
-                  <Index type="calendar" text={moment(post.createTime).format('YYYY-MM-DD')} />
+                  <IconText type="calendar" text={moment(post.createTime).format('YYYY-MM-DD')} />
                 </div>
               </div>
               <div className={styles.postTitleTags}>
-                <Index type="read-o" text={<Tag text={post.readTimes} href="#" />} />
-                <Index type="like-o" text={<Tag text={post.likedTimes} href="#" />} />
+                <IconText type="read-o" text={<Tag text={post.readTimes} />} />
+                <IconText type="like-o" text={<Tag text={post.likedTimes} />} />
               </div>
             </div>
           }
