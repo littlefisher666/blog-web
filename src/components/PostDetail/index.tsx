@@ -10,11 +10,7 @@ interface PostDetailProps extends ConnectProps {
   post: Post;
 }
 
-interface RouterInfo {
-  postId: string;
-}
-
-type PropsWithRouter = PostDetailProps & RouteComponentProps<RouterInfo>;
+type PropsWithRouter = PostDetailProps & RouteComponentProps<{ postId: string }>;
 
 @connect(({ post }: { post: PostInfoState }) => ({
   post: post.post,
@@ -26,6 +22,12 @@ class PostDetail extends Component<PropsWithRouter> {
     if (dispatch) {
       dispatch({
         type: 'post/queryPostDetail',
+        payload: {
+          postId: id,
+        },
+      });
+      dispatch({
+        type: 'post/read',
         payload: {
           postId: id,
         },

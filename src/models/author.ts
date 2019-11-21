@@ -2,6 +2,7 @@ import { Effect } from 'dva';
 import { Reducer } from 'redux';
 import { fetchCurrentAuthor } from '@/services/author';
 import { TagType } from '@/entity/tag';
+import getResponse from '@/utils/response';
 
 /** 城市信息 */
 export interface CityInfo {
@@ -70,7 +71,7 @@ const AuthorModel: AuthorModelType = {
       const response = yield call(fetchCurrentAuthor);
       yield put({
         type: 'saveCurrentAuthor',
-        payload: response.data,
+        payload: getResponse(response),
       });
     },
   },

@@ -4,7 +4,7 @@ import { Card } from 'antd';
 import styles from './index.less';
 import Meta from 'antd/lib/card/Meta';
 import moment from 'moment';
-import IconText from '@/components/IconText/IconText';
+import Index from '@/components/IconText';
 import Tag from '@/components/Tag';
 import { Link } from 'umi';
 
@@ -27,12 +27,12 @@ class PostTitle extends PureComponent<PostTitleProps> {
                   {post.title}
                 </Link>
                 <div className={styles.postTitleCreateTime}>
-                  <IconText type="calendar" text={moment(post.createTime).format('YYYY-MM-DD')} />
+                  <Index type="calendar" text={moment(post.createTime).format('YYYY-MM-DD')} />
                 </div>
               </div>
               <div className={styles.postTitleTags}>
-                <IconText type="read-o" text={<Tag text={post.readTimes} href="#" />} />
-                <IconText type="like-o" text={<Tag text={post.likedTimes} href="#" />} />
+                <Index type="read-o" text={<Tag text={post.readTimes} href="#" />} />
+                <Index type="like-o" text={<Tag text={post.likedTimes} href="#" />} />
               </div>
             </div>
           }

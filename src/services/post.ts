@@ -14,3 +14,9 @@ export async function queryPostList(authorId: number, pageNum: number, size: num
 export async function queryPostDetail(postId: number): Promise<any> {
   return request(`/blog/api/v1/post/${postId}/content`);
 }
+
+export async function read(postId: number): Promise<any> {
+  return request(`/blog/api/v1/post/${postId}/read`, {
+    method: 'post',
+  });
+}

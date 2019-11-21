@@ -1,12 +1,13 @@
 import React from 'react';
 import { Icon } from 'antd';
+import styles from './index.less';
 
 const IconText: React.FC<{
   type: string;
   text: React.ReactNode;
 }> = ({ type, text }) => (
   <span>
-    <Icon type={type} style={{ marginRight: 8, top: 3, fontSize: 18, position: 'relative' }} />
+    <Icon type={type} className={styles.icon} />
     {text}
   </span>
 );

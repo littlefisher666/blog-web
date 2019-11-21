@@ -10,7 +10,7 @@ class Tag extends PureComponent<TagProps> {
   render() {
     const { text, href } = this.props;
     return (
-      <a className={styles.tag_a} href={href}>
+      <a className={styles.tagA} href={href}>
         {text}
       </a>
     );
