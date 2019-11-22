@@ -1,5 +1,6 @@
 import React, { PureComponent, ReactNode } from 'react';
 import styles from './index.less';
+import { Link } from 'umi';
 
 interface TagProps {
   text: ReactNode;
@@ -33,9 +34,9 @@ class Tag extends PureComponent<TagProps> {
     return href === undefined || href === '#' ? (
       <span className={colorStyle}>{text}</span>
     ) : (
-      <a className={colorStyle} href={href}>
+      <Link className={colorStyle} to={href}>
         {text}
-      </a>
+      </Link>
     );
   }
 }

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { AuthorModelState, CurrentAuthor } from '@/models/author';
 import styles from '@/components/AuthorInfo/index.less';
-import { Card, Divider, Tag } from 'antd';
+import { Card, Divider } from 'antd';
 import { ConnectProps } from '@/models/connect';
 import { Link } from 'umi';
+import Tag from '@/components/Tag';
 
 interface AuthorInfoProps extends ConnectProps {
   currentAuthor: CurrentAuthor;
@@ -61,9 +62,16 @@ class AuthorInfo extends Component<Partial<AuthorInfoProps>> {
               <Divider dashed />
               <div className={styles.tags}>
                 <div className={styles.tagsTitle}>标签</div>
-                {currentAuthor.tags.map(item => (
-                  <Tag key={item.code}>{item.name}</Tag>
-                ))}
+                <div className={styles.tagsOverflow}>
+                  {currentAuthor.postTags.map(item => (
+                    <Tag
+                      key={item.code}
+                      text={item.name}
+                      tagId={item.code}
+                      href={`/postTagList/${item.code}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

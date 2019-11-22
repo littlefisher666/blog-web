@@ -7,7 +7,6 @@ import IconText from '@/components/IconText';
 import Tag from '@/components/Tag';
 import { Link } from 'umi';
 import styles from './index.less';
-import { TagType } from '@/entity/tag';
 
 interface PostTitleProps {
   post: PostInfo;
@@ -34,13 +33,14 @@ class PostTitle extends PureComponent<PostTitleProps> {
               <div className={styles.postTitleTags}>
                 <IconText
                   type="crown"
-                  text={
-                    <List<TagType>
-                      dataSource={post.tagList}
-                      className={styles.tagList}
-                      renderItem={tag => <Tag text={tag.name} tagId={Number(tag.code)} />}
+                  text={post.tagList.map(item => (
+                    <Tag
+                      key={item.code}
+                      text={item.name}
+                      tagId={item.code}
+                      href={`/postTagList/${item.code}`}
                     />
-                  }
+                  ))}
                 />
                 <IconText type="read" text={<Tag text={post.readTimes} />} />
               </div>

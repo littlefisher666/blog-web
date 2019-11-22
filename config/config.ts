@@ -92,6 +92,10 @@ export default {
           component: '../components/PostList/index',
         },
         {
+          path: '/postTagList/:tagId',
+          component: '../components/PostTagList/index',
+        },
+        {
           path: '/postDetail/:postId',
           component: '../components/PostDetail/index',
         },

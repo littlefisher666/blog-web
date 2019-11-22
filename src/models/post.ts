@@ -63,6 +63,7 @@ const PostModel: PostModel = {
       const response = yield call(
         queryPostList,
         payload.authorId,
+        payload.tagId,
         payload.pageNum || 0,
         payload.size || 5,
       );

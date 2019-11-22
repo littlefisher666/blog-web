@@ -35,8 +35,10 @@ export interface CurrentAuthor {
   job?: string;
   /** 团队 */
   group?: string;
-  /** 标签 */
-  tags: TagType[];
+  /** 作者标签 */
+  authorTags?: TagType[];
+  /** 博文标签 */
+  postTags: TagType[];
   /** 城市 */
   city: CityInfo;
   /** 详细地址 */
