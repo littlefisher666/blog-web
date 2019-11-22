@@ -15,13 +15,20 @@ interface PostListProps extends ConnectProps {
 
 type PropsWithRouter = PostListProps & RouteComponentProps<{ tagId: string }>;
 
-function getPostTagData(dispatch: Dispatch | undefined, tagCode: string) {
+function getPostTagData(
+  dispatch: Dispatch | undefined,
+  tagCode: string,
+  num?: number,
+  pageSize?: number,
+) {
   if (dispatch) {
     dispatch({
       type: 'post/queryPostList',
       payload: {
         authorId: DEFAULT_AUTHOR_ID,
         tagId: tagCode,
+        pageNum: num,
+        size: pageSize,
       },
     });
   }
@@ -48,16 +55,7 @@ class PostList extends Component<PropsWithRouter> {
   render() {
     const { postPage, dispatch } = this.props;
     const pageChange = (page: number, pageSize?: number): void => {
-      if (dispatch) {
-        dispatch({
-          type: 'post/queryPostList',
-          payload: {
-            authorId: DEFAULT_AUTHOR_ID,
-            pageNum: page - 1,
-            size: pageSize,
-          },
-        });
-      }
+      getPostTagData(dispatch, this.props.match.params.tagId, page - 1, pageSize);
     };
     return (
       <List<PostInfo>
