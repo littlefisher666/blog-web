@@ -1,6 +1,6 @@
 import React, { PureComponent, ReactNode } from 'react';
 import { PostInfo } from '@/models/post';
-import { Card, List } from 'antd';
+import { Card } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import moment from 'moment';
 import IconText from '@/components/IconText';

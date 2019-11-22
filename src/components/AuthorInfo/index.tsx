@@ -31,7 +31,7 @@ class AuthorInfo extends Component<Partial<AuthorInfoProps>> {
       currentAuthorLoading || !(currentAuthor && Object.keys(currentAuthor).length);
     return (
       <Card bordered={false} loading={dataLoading} bodyStyle={{ padding: 0 }}>
-        {!dataLoading ? (
+        {!dataLoading && currentAuthor ? (
           <div>
             <div className={styles.overlay} />
             <div className={styles.intrudeLess}>
