@@ -35,7 +35,7 @@ class PostList extends Component<PostListProps> {
           type: 'post/queryPostList',
           payload: {
             authorId: DEFAULT_AUTHOR_ID,
-            pageNum: page - 1,
+            pageNum: page,
             size: pageSize,
           },
         });

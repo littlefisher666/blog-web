@@ -55,7 +55,7 @@ class PostList extends Component<PropsWithRouter> {
   render() {
     const { postPage, dispatch } = this.props;
     const pageChange = (page: number, pageSize?: number): void => {
-      getPostTagData(dispatch, this.props.match.params.tagId, page - 1, pageSize);
+      getPostTagData(dispatch, this.props.match.params.tagId, page, pageSize);
     };
     return (
       <List<PostInfo>
