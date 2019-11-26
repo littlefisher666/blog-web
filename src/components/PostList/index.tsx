@@ -44,12 +44,12 @@ class PostList extends Component<PostListProps> {
     return (
       <List<PostInfo>
         className={styles.postListCard}
-        dataSource={postPage ? postPage.content : []}
+        dataSource={postPage ? postPage.list : []}
         pagination={{
           onChange: pageChange,
           pageSize: 5,
           size: 'small',
-          total: postPage.totalElements,
+          total: postPage.total,
         }}
         renderItem={item => <SimplePostInfo post={item} />}
       />

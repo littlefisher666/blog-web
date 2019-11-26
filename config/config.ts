@@ -160,7 +160,7 @@ export default {
 
   proxy: {
     '/blog/api/': {
-      target: 'http://106.14.156.120:8081/',
+      target: 'http://127.0.0.1:8081/',
       changeOrigin: true,
       //pathRewrite: { '^/api': '/blog/api' },
     },

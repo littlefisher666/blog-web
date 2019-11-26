@@ -60,12 +60,12 @@ class PostList extends Component<PropsWithRouter> {
     return (
       <List<PostInfo>
         className={styles.postListCard}
-        dataSource={postPage ? postPage.content : []}
+        dataSource={postPage ? postPage.list : []}
         pagination={{
           onChange: pageChange,
           pageSize: 5,
           size: 'small',
-          total: postPage.totalElements,
+          total: postPage.total,
         }}
         renderItem={item => <PostTitle post={item} content={<div />} />}
       />
