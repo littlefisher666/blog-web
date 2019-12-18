@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import styles from './index.less';
+import Footer from '@/components/Footer';
 
 export interface MainContentProps {
   children: ReactNode;
@@ -13,6 +14,7 @@ class MainContent extends Component<MainContentProps> {
     return (
       <div className={styles.main}>
         <div className={styles.content}>{children}</div>
+        <Footer />
       </div>
     );
   }
